@@ -50,7 +50,10 @@ jobs:
         uses: ./.github/actions/setup-project
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium firefox webkit
+
+      - name: Install Chrome and Edge
+        run: pnpm exec playwright install chrome msedge
 
       - name: Run E2E tests
         run: pnpm run test:e2e
