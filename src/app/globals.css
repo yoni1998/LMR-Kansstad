@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Kleuren: primair */
+  --color-primary-blue-dark: #004475;
+  --color-primary-blue-medium: #2d89cc;
+  --color-primary-grey-light: #e3e5e7;
+  --color-primary-white: #ffffff;
+  --color-primary-yellow: #ffe200;
+
+  /* Kleuren: secundair */
+  --color-secondary-blue-light: #c2e2fe;
+  --color-secondary-grey-dark: #9097a0;
+  --color-secondary-yellow: #e1b827;
+  --color-secondary-yellow-stripe: #dbcb4a;
+  --color-secondary-teal: #49b4aa;
+  --color-secondary-pink-dark: #ea516d;
+
+  /* Kleuren: overig (lokale stijlen) */
+  --color-blue-background: #0c6aae;
+  --color-darkest-blue: #0e325b;
+  --color-black: #0f172a;
+  --color-grey-default: #cbd5e1;
+  --color-grey-dark: #94a3b8;
+
+  /* Kleuren: semantisch */
+  --color-error: #f05535;
+  --color-success: #17a500;
+  --color-info-600: #0284c7;
+
+  /* Typografie */
+  --font-sans: var(--font-flanders-art-sans), system-ui, sans-serif;
+
+  --text-h1: 3.75rem;
+  --text-h1--line-height: 1.2;
+
+  --text-h2: 2rem;
+  --text-h2--line-height: 1.2;
+
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.3;
+
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.3;
+
+  --text-h5: 1rem;
+  --text-h5--line-height: 1.4;
+
+  --text-body-lg: 1.25rem;
+  --text-body-lg--line-height: 1.5;
+
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.5;
+
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.5;
+
+  --text-button: 1.25rem;
+  --text-button--line-height: 1.5;
+
+  --text-button-sm: 1rem;
+  --text-button-sm--line-height: 1.5;
+
+  --text-button-mobile: 0.875rem;
+  --text-button-mobile--line-height: 1.5;
+
+  /* Schaduw */
+  --shadow-card: 0 0 10px rgb(0 0 0 / 0.25);
+  --shadow-raised: 0 12px 20px rgb(0 0 0 / 0.25);
+
+  /* animations */
+  --animate-stripes: stripes-move 5s linear infinite;
+  --animate-modal-in: modal-in 200ms ease-out;
+  --animate-overlay-in: overlay-in 200ms ease-out;
+
+  @keyframes modal-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes stripes-move {
+    to {
+      background-position-x: 34.52px;
+    }
+  }
+}
+
+@utility bg-stripes-yellow {
+  background-image: repeating-linear-gradient(
+    112deg,
+    var(--color-secondary-yellow-stripe) 0 16px,
+    var(--color-secondary-yellow) 16px 32px
+  );
+  background-size: 34.52px 100%;
+}
+
+body {
+  @apply text-primary-white text-body bg-[#1a4371] font-sans;
+}
