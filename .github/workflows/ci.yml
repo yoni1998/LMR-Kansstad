@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  BASE_URL: ${{ vars.BASE_URL }}
+
 jobs:
   security:
     name: Check dependencies
