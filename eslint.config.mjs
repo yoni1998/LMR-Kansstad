@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
@@ -7,10 +8,14 @@ import prettierConfig from 'eslint-config-prettier';
 
 const sharedLayers = ['components', 'api', 'hooks', 'utils'];
 
-const features = fs
-  .readdirSync('./src/features', { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name);
+const featuresDir = fileURLToPath(new URL('./src/features', import.meta.url));
+
+const features = fs.existsSync(featuresDir)
+  ? fs
+      .readdirSync(featuresDir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+  : [];
 
 export default defineConfig([
   ...nextVitals,
@@ -92,14 +97,14 @@ export default defineConfig([
     files: ['src/**/*.{ts,tsx}'],
 
     rules: {
-      // no-circular-dependencies
+      // No circular dependencies
       'import/no-cycle': ['error', { ignoreExternal: true }],
 
       'import/no-restricted-paths': [
         'error',
         {
           zones: [
-            // no-feature-to-app-dependencies
+            // No feature-to-app dependencies
             ...['features', ...sharedLayers].map((layer) => ({
               target: `./src/${layer}`,
               from: './src/app',
@@ -107,7 +112,7 @@ export default defineConfig([
                 'Features and shared modules must not depend on route implementations.',
             })),
 
-            // no-shared-to-feature-dependencies
+            // No shared-to-feature dependencies
             ...sharedLayers.map((layer) => ({
               target: `./src/${layer}`,
               from: './src/features',
@@ -115,7 +120,7 @@ export default defineConfig([
                 'Shared modules must not depend on feature implementations.',
             })),
 
-            // no-cross-feature-dependencies
+            // No cross-feature dependencies
             ...features.map((feature) => ({
               target: `./src/features/${feature}`,
               from: './src/features',
@@ -124,7 +129,7 @@ export default defineConfig([
                 'Features must not depend directly on other feature implementations.',
             })),
 
-            // no-utils-to-feature-or-framework-dependencies
+            // No utils-to-feature or framework dependencies
             {
               target: './src/utils',
               from: [
