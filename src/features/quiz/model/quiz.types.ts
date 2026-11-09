@@ -1,4 +1,4 @@
-import z from 'zod';
+import type { z } from 'zod';
 import { ValidateQuizAnswersRequestSchema } from './quiz.schema';
 
 export type QuizAnswer = {
@@ -26,3 +26,6 @@ export type ValidateQuizAnswersResponse = {
   answers: QuizAnswerResult[];
   isCorrect: boolean;
 };
+
+export type AnswerOptionState =
+  'default' | 'selected' | 'correct' | 'incorrect';
