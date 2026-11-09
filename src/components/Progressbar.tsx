@@ -23,12 +23,14 @@ export function ProgressBar({
   return (
     <div
       role="progressbar"
+      aria-label="Quizvoortgang"
       aria-valuemin={0}
       aria-valuemax={max}
       aria-valuenow={clamped}
-      className={`bg-primary-blue-dark relative overflow-hidden ${thicknesses[thickness]} ${className} `}
+      className={`bg-blue-background relative overflow-hidden ${thicknesses[thickness]} ${className}`}
     >
       <div
+        aria-hidden="true"
         className="bg-stripes-yellow motion-safe:animate-stripes h-full min-w-3 rounded-xs transition-[width] duration-500"
         style={{ width: `${percentage}%` }}
       />
