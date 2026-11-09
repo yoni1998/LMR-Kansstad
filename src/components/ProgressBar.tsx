@@ -27,7 +27,7 @@ export function ProgressBar({
       aria-valuemin={0}
       aria-valuemax={max}
       aria-valuenow={clamped}
-      className={`bg-blue-background relative overflow-hidden ${thicknesses[thickness]} ${className}`}
+      className={`bg-blue-frame relative overflow-hidden ${thicknesses[thickness]} ${className}`}
     >
       <div
         aria-hidden="true"

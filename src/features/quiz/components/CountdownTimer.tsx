@@ -47,7 +47,7 @@ export function CountdownTimer({
     const endsAt = Date.now() + duration * 1000;
 
     const id = setInterval(() => {
-      const left = Math.max(0, Math.ceil((endsAt - Date.now()) / 1000));
+      const left = Math.ceil((endsAt - Date.now()) / 1000);
       setRemaining(left);
 
       if (left === 0) {
@@ -62,6 +62,7 @@ export function CountdownTimer({
   return (
     <div
       role="timer"
+      aria-label="Resterende tijd"
       className={`flex items-center justify-center font-bold ${sizes[size]} ${className}`}
     >
       <TimerIcon aria-hidden="true" className={iconSizes[size]} />

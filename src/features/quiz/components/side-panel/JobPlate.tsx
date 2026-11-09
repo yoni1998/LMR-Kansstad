@@ -10,7 +10,7 @@ type JobPlateProps = {
 export function JobPlate({ title, description }: JobPlateProps) {
   return (
     <div className="flex flex-col items-center gap-4">
-      <UnderlinedHeading as="h2">{title}</UnderlinedHeading>
+      <UnderlinedHeading as="h1">{title}</UnderlinedHeading>
       <div className="text-body-sm text-blue-dark mb-4 font-light">
         {description}
       </div>

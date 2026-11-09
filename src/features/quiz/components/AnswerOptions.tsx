@@ -34,6 +34,7 @@ export function AnswerOptions({
             <OptionButton
               key={answer}
               state={state}
+              aria-pressed={selectedAnswers.includes(answer)}
               disabled={disabled}
               onClick={() => onToggle(answer)}
             >
