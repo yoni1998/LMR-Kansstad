@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-blue-background: #0c6aae;
+  --color-background: #1a4371;
+  --color-blue-frame: #0c6aae;
   --color-darkest-blue: #0e325b;
   --color-blue-dark: #004475;
   --color-blue-medium: #2d89cc;
@@ -113,5 +114,5 @@
 }
 
 body {
-  @apply text-body bg-[#1a4371] font-sans text-white;
+  @apply text-body bg-background font-sans text-white;
 }

@@ -13,6 +13,10 @@ export async function validateQuizAnswers({
   const quizData = await getQuizData();
   const question = quizData[questionIndex];
 
+  if (!question) {
+    throw new Error('Question not found');
+  }
+
   const selectedSet = new Set(selectedAnswers);
 
   const answers = question.answers.map(({ answer, correct }) => ({

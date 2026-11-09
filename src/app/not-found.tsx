@@ -2,13 +2,13 @@ import Link from 'next/link';
 
 const NotFoundPage = () => {
   return (
-    <div className="mt-52 flex flex-col items-center font-semibold">
-      <h1>404 - Not Found</h1>
+    <main className="flex h-screen flex-col items-center justify-center font-semibold">
+      <h1>404 - Niet gevonden</h1>
       <p>Sorry, deze pagina bestaat niet.</p>
-      <Link href={'/'} replace>
-        Go to Home
+      <Link href={'/'} replace className="underline">
+        Ga naar quiz pagina
       </Link>
-    </div>
+    </main>
   );
 };
 
