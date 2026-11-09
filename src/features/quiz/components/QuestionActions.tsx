@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/Button';
 
 type QuestionActionsProps = {
@@ -9,7 +10,7 @@ type QuestionActionsProps = {
 };
 
 const WRAPPER_CLASS_NAME =
-  'mt-auto mb-6 flex h-40 w-full max-w-100 flex-col justify-end gap-4';
+  'mt-auto mb-6 flex min-h-40 w-full max-w-100 flex-col justify-end gap-4';
 
 export function QuestionActions({
   hasError,
@@ -18,10 +19,23 @@ export function QuestionActions({
   onSubmit,
   onShowResult,
 }: QuestionActionsProps) {
+  const continueButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (isSuccess) {
+      continueButtonRef.current?.focus();
+    }
+  }, [isSuccess]);
+
   if (isSuccess) {
     return (
       <div className={WRAPPER_CLASS_NAME}>
-        <Button color="yellow" onClick={onShowResult} className="w-full">
+        <Button
+          ref={continueButtonRef}
+          color="yellow"
+          onClick={onShowResult}
+          className="w-full"
+        >
           Doorgaan
         </Button>
       </div>

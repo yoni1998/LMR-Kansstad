@@ -10,7 +10,7 @@ const baseStyles =
   'rounded-lg px-2 py-2.5 text-button-mobile ' +
   'md:px-4 md:py-2 md:text-button ' +
   'transition-colors cursor-pointer disabled:cursor-default enabled:hover:bg-blue-medium enabled:hover:text-white ' +
-  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-medium ';
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ';
 
 const states: Record<AnswerOptionState, string> = {
   default: 'border-2 border-transparent bg-blue-light',
