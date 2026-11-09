@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { useModal } from '@/components/modal/useModal';
 import { Surface } from '@/components/Surface';
 import { useSubmitQuizAnswers } from '../hooks/useSubmitQuizAnswers';
 import { getLevelMessage, isFullyCorrect } from '../model/quiz.helpers';
@@ -23,9 +24,8 @@ type MultipleChoiceQuizPanelProps = {
   className?: string;
 };
 
-function getSecondsLeft(expiresAt: number) {
-  return Math.max(0, Math.ceil((expiresAt - Date.now()) / 1000));
-}
+const getSecondsLeft = (expiresAt: number) =>
+  Math.ceil((expiresAt - Date.now()) / 1000);
 
 export function MultipleChoiceQuizPanel({
   questionIndex,
@@ -45,9 +45,10 @@ export function MultipleChoiceQuizPanel({
     isSuccess,
   } = useSubmitQuizAnswers();
 
+  const { openModal, closeModal } = useModal();
+
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
-  const [isTimeUp, setIsTimeUp] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTimeUp, setIsTimeUp] = useState(() => Date.now() >= expiresAt);
   const [timerDuration] = useState(() => getSecondsLeft(expiresAt));
 
   const level = questionIndex + 1;
@@ -81,68 +82,72 @@ export function MultipleChoiceQuizPanel({
     if (isAllCorrect && finalScore === totalQuestions) {
       new Audio('/audio/applause.mp3').play();
     }
-    setIsModalOpen(true);
+    openModal({
+      content: (
+        <LevelCompleteModal
+          level={level}
+          progressValue={level}
+          progressMax={totalQuestions}
+          message={getLevelMessage({
+            isLastLevel,
+            isAllCorrect,
+            isTimeUp,
+            finalScore,
+            totalQuestions,
+          })}
+          actionLabel={isLastLevel ? 'Opnieuw' : 'Volgend level'}
+          onContinue={() => {
+            closeModal();
+            onContinue(isAllCorrect);
+          }}
+        />
+      ),
+    });
   }
 
+  const showTimer = !isSuccess && !isTimeUp;
+
   return (
-    <>
-      <section
-        className={`bg-blue-background flex flex-col rounded-2xl p-4 ${className}`}
-      >
-        <div className="bg-darkest-blue flex flex-1 flex-col items-center gap-8 rounded-md px-4 py-3 md:px-12">
-          {/* Vaste hoogte zodat de layout niet verspringt als de timer verdwijnt */}
-          <div className="h-10">
-            {!isSuccess && !isTimeUp && (
-              <Surface
-                color="white"
-                className="h-10 rounded-full [--edge:var(--color-blue-dark)]!"
-              >
-                <CountdownTimer
-                  duration={timerDuration}
-                  onComplete={handleTimerComplete}
-                  size="lg"
-                />
-              </Surface>
-            )}
-          </div>
-
-          <h1 className="text-h3 max-w-xl text-center font-bold text-white">
-            {question}
-          </h1>
-
-          <AnswerOptions
-            answers={answers}
-            selectedAnswers={selectedAnswers}
-            result={result}
-            disabled={isLocked}
-            onToggle={toggleAnswer}
-          />
-
-          <QuestionActions
-            hasError={isError}
-            isSuccess={isSuccess}
-            canSubmit={canSubmit}
-            onSubmit={handleSubmitAnswers}
-            onShowResult={handleShowResult}
-          />
+    <section
+      className={`bg-blue-frame flex flex-col rounded-2xl p-4 ${className}`}
+    >
+      <div className="bg-darkest-blue flex flex-1 flex-col items-center gap-8 rounded-md px-4 py-3 md:px-12">
+        {/* Vaste hoogte zodat de layout niet verspringt als de timer verdwijnt */}
+        <div className="min-h-12">
+          {showTimer && (
+            <Surface
+              color="white"
+              className="min-h-10 rounded-full [--edge:var(--color-blue-dark)]!"
+            >
+              <CountdownTimer
+                duration={timerDuration}
+                onComplete={handleTimerComplete}
+                size="lg"
+              />
+            </Surface>
+          )}
         </div>
-      </section>
 
-      <LevelCompleteModal
-        open={isSuccess && isModalOpen}
-        level={level}
-        progressValue={level}
-        progressMax={totalQuestions}
-        message={getLevelMessage({
-          isLastLevel,
-          isAllCorrect,
-          isTimeUp,
-          finalScore,
-          totalQuestions,
-        })}
-        actionLabel={isLastLevel ? 'Opnieuw' : 'Volgend level'}
-        onReset={() => onContinue(isAllCorrect)}
-      />
-    </>
+        <h2 className="text-h3 max-w-xl text-center font-bold text-white">
+          {question}
+        </h2>
+
+        <AnswerOptions
+          answers={answers}
+          selectedAnswers={selectedAnswers}
+          result={result}
+          disabled={isLocked}
+          onToggle={toggleAnswer}
+        />
+
+        <QuestionActions
+          hasError={isError}
+          isSuccess={isSuccess}
+          canSubmit={canSubmit}
+          onSubmit={handleSubmitAnswers}
+          onShowResult={handleShowResult}
+        />
+      </div>
+    </section>
   );
 }

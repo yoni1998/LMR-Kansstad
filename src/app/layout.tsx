@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { ModalProvider } from '@/components/modal/ModalProvider';
 
 const flandersArtSans = localFont({
   src: [
@@ -41,7 +42,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang="nl"
       className={`${flandersArtSans.variable} h-full antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        <ModalProvider>{children}</ModalProvider>
+      </body>
     </html>
   );
 }
