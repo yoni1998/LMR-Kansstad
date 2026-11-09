@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-import { useQuizActions } from '../hooks/useQuizActions';
+import { useShallow } from 'zustand/shallow';
 import { useQuizHydration } from '../hooks/useQuizHydration';
 import { useQuizStore } from '../model/quiz.store';
 import { QuizQuestion } from '../model/quiz.types';
@@ -17,7 +17,15 @@ export function GameSession({ questions, className = '' }: GameSessionProps) {
   const questionIndex = useQuizStore((s) => s.currentQuestionIndex);
   const score = useQuizStore((s) => s.score);
   const expiresAt = useQuizStore((s) => s.expiresAt);
-  const { startTimer, nextQuestion, incrementScore, reset } = useQuizActions();
+
+  const { startTimer, nextQuestion, incrementScore, reset } = useQuizStore(
+    useShallow((s) => ({
+      startTimer: s.startTimer,
+      nextQuestion: s.nextQuestion,
+      incrementScore: s.incrementScore,
+      reset: s.reset,
+    })),
+  );
 
   const hasHydrated = useQuizHydration();
 
@@ -39,7 +47,7 @@ export function GameSession({ questions, className = '' }: GameSessionProps) {
     nextQuestion(nextQuestionData.time_limit_s);
   }
 
-  if (!hasHydrated || expiresAt === null) return null;
+  if (!hasHydrated) return null;
 
   if (!question) {
     return (
@@ -48,6 +56,8 @@ export function GameSession({ questions, className = '' }: GameSessionProps) {
       </p>
     );
   }
+
+  if (expiresAt === null) return null;
 
   return (
     <MultipleChoiceQuizPanel

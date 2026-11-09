@@ -1,8 +1,8 @@
-import { API } from '../../../api';
 import type {
   ValidateQuizAnswersRequest,
   ValidateQuizAnswersResponse,
 } from '../model/quiz.types';
+import { API } from './api.config';
 
 export async function submitQuizAnswers(
   payload: ValidateQuizAnswersRequest,
