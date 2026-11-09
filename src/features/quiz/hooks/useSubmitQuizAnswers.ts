@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { submitQuizAnswers } from './api/submitQuizAnswers';
+import { submitQuizAnswers } from '../api/submitQuizAnswers';
 import {
   ValidateQuizAnswersRequest,
   ValidateQuizAnswersResponse,
-} from './model/quiz.types';
+} from '../model/quiz.types';
 
 export function useSubmitQuizAnswers() {
   const [data, setData] = useState<ValidateQuizAnswersResponse>();
