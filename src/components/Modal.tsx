@@ -16,7 +16,7 @@ function Screw({ className }: { className: string }) {
   return (
     <span
       aria-hidden="true"
-      className={`bg-primary-grey-light absolute size-5 rounded-full shadow-[inset_-2px_-2px_0_0_var(--color-secondary-grey-dark)] ${className}`}
+      className={`bg-grey-light absolute size-5 rounded-full shadow-[inset_-2px_-2px_0_0_var(--color-grey-dark)] ${className}`}
     />
   );
 }
@@ -41,14 +41,14 @@ export function Modal({
               onInteractOutside={(e) => {
                 if (!dismissible) e.preventDefault();
               }}
-              className={`bg-primary-white motion-safe:animate-modal-in relative flex w-full max-w-100 flex-col items-center gap-6 rounded-lg px-12 py-12 text-center ${className}`}
+              className={`motion-safe:animate-modal-in relative flex w-full max-w-100 flex-col items-center gap-6 rounded-lg bg-white px-12 py-12 text-center ${className}`}
             >
               <Screw className="top-4 left-4" />
               <Screw className="top-4 right-4" />
               <Screw className="bottom-4 left-4" />
               <Screw className="right-4 bottom-4" />
 
-              <Dialog.Title className="text-h2 text-primary-blue-dark font-bold">
+              <Dialog.Title className="text-h2 text-blue-dark font-bold">
                 {title}
               </Dialog.Title>
 
@@ -70,7 +70,7 @@ export function ModalDescription({
 }) {
   return (
     <Dialog.Description
-      className={`text-body text-primary-blue-dark font-light ${className}`}
+      className={`text-body text-blue-dark font-light ${className}`}
     >
       {children}
     </Dialog.Description>

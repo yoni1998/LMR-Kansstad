@@ -15,7 +15,7 @@ export function Avatar({
 }: AvatarProps) {
   return (
     <div
-      className={`bg-primary-white shadow-raised relative aspect-square w-30 overflow-hidden rounded-full ${className}`}
+      className={`shadow-raised relative aspect-square w-30 overflow-hidden rounded-full bg-white ${className}`}
     >
       <Image
         src={src}

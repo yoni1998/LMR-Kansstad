@@ -9,7 +9,7 @@ export default function Error({ reset }: { reset: () => void }) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-4">
-      <p>Er is iets misgelopen bij het laden van de quiz.</p>
+      <p role="alert">Er is iets misgelopen bij het laden van de quiz.</p>
       <Button
         onClick={() => {
           startTransition(() => {
@@ -17,7 +17,7 @@ export default function Error({ reset }: { reset: () => void }) {
             reset(); // wist de foutstatus en rendert opnieuw
           });
         }}
-        variant="secondary"
+        color="white"
       >
         Probeer opnieuw
       </Button>

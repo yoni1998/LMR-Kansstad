@@ -16,13 +16,13 @@ export function UnderlinedHeading({
   return (
     <div className="flex flex-col items-center gap-4">
       <Tag
-        className={`text-h3 text-primary-blue-dark text-center font-bold ${className}`}
+        className={`text-h3 text-blue-dark text-center font-bold ${className}`}
       >
         {children}
       </Tag>
       <span
         aria-hidden="true"
-        className="bg-primary-blue-medium h-0.5 w-25 rounded-full"
+        className="bg-blue-medium h-0.5 w-25 rounded-full"
       />
     </div>
   );

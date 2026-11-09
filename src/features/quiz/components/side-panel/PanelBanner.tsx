@@ -6,14 +6,16 @@ import { Avatar } from '@/components/Avatar';
 type PanelBannerProps = {
   bannerSrc: ImageProps['src'];
   avatarSrc: ImageProps['src'];
-  avatarAlt?: string;
-  children?: ReactNode;
+  avatarAlt: string;
+  bannerAlt: string;
+  children: ReactNode;
 };
 
 export function PanelBanner({
   bannerSrc,
   avatarSrc,
-  avatarAlt = 'job avatar',
+  bannerAlt,
+  avatarAlt,
   children,
 }: PanelBannerProps) {
   return (
@@ -21,13 +23,13 @@ export function PanelBanner({
       <div className="relative h-44 overflow-hidden rounded-t-sm">
         <Image
           src={bannerSrc}
-          alt="job banner"
+          alt={bannerAlt}
           loading="eager"
           fill
           sizes="340px"
           className="object-cover"
         />
-        <div className="bg-primary-blue-dark/50 absolute inset-0" />
+        <div className="bg-blue-dark/50 absolute inset-0" />
         <div className="relative flex gap-2 p-2">{children}</div>
       </div>
       <div className="absolute top-18 left-1/2 -translate-x-1/2">

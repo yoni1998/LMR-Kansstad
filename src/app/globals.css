@@ -1,27 +1,19 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Kleuren: primair */
-  --color-primary-blue-dark: #004475;
-  --color-primary-blue-medium: #2d89cc;
-  --color-primary-grey-light: #e3e5e7;
-  --color-primary-white: #ffffff;
-  --color-primary-yellow: #ffe200;
-
-  /* Kleuren: secundair */
-  --color-secondary-blue-light: #c2e2fe;
-  --color-secondary-grey-dark: #9097a0;
-  --color-secondary-yellow: #e1b827;
-  --color-secondary-yellow-stripe: #dbcb4a;
-  --color-secondary-teal: #49b4aa;
-  --color-secondary-pink-dark: #ea516d;
-
-  /* Kleuren: overig (lokale stijlen) */
   --color-blue-background: #0c6aae;
   --color-darkest-blue: #0e325b;
-  --color-black: #0f172a;
-  --color-grey-default: #cbd5e1;
+  --color-blue-dark: #004475;
+  --color-blue-medium: #2d89cc;
+  --color-blue-light: #c2e2fe;
+
+  --color-yellow: #ffe200;
+  --color-yellow-shadow: #e1b827;
+  --color-yellow-stripe: #dbcb4a;
+
   --color-grey-dark: #94a3b8;
+  --color-grey-dark-disabled: #9097a0;
+  --color-grey-light: #e3e5e7;
 
   /* Kleuren: semantisch */
   --color-error: #f05535;
@@ -103,12 +95,23 @@
 @utility bg-stripes-yellow {
   background-image: repeating-linear-gradient(
     112deg,
-    var(--color-secondary-yellow-stripe) 0 16px,
-    var(--color-secondary-yellow) 16px 32px
+    var(--color-yellow-stripe) 0 16px,
+    var(--color-yellow) 16px 32px
   );
   background-size: 34.52px 100%;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
-  @apply text-primary-white text-body bg-[#1a4371] font-sans;
+  @apply text-body bg-[#1a4371] font-sans text-white;
 }
