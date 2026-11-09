@@ -1,35 +1,37 @@
 import { Button } from '@/components/Button';
-import { Modal, ModalDescription } from '@/components/Modal';
-import { ProgressBar } from '@/components/Progressbar';
+import { Modal, ModalDescription } from '@/components/modal/Modal';
+import { ProgressBar } from '@/components/ProgressBar';
 
 type LevelCompleteModalProps = {
-  open: boolean;
   level: number;
   progressValue: number;
   progressMax: number;
   message: string;
   actionLabel: string;
-  onReset: () => void;
+  onContinue: () => void;
 };
 
 export function LevelCompleteModal({
-  open,
   level,
   progressValue,
   progressMax,
   message,
   actionLabel,
-  onReset,
+  onContinue,
 }: LevelCompleteModalProps) {
   return (
-    <Modal open={open} title={`Level ${level} voltooid!`} dismissible={false}>
+    <Modal open={true} title={`Level ${level} voltooid!`} dismissible={false}>
       <ProgressBar
         value={progressValue}
         max={progressMax}
         className="w-2/3 rounded-md"
       />
       <ModalDescription>{message}</ModalDescription>
-      <Button color="yellow" onClick={onReset} className="w-11/12">
+      <Button
+        color="yellow"
+        onClick={onContinue}
+        className="focus-visible:outline-darkest-blue! w-11/12"
+      >
         {actionLabel}
       </Button>
     </Modal>

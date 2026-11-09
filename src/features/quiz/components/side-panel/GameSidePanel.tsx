@@ -3,13 +3,13 @@
 import type { ReactNode } from 'react';
 import type { ImageProps } from 'next/image';
 
-import { ProgressBar } from '@/components/Progressbar';
+import { ProgressBar } from '@/components/ProgressBar';
 import { Surface } from '@/components/Surface';
 import { useQuizStore } from '../../model/quiz.store';
 import { CountdownTimer } from '../CountdownTimer';
 import { JobPlate } from './JobPlate';
 import { PanelBanner } from './PanelBanner';
-import { PanelControls } from './PanelControl';
+import { PanelControls } from './PanelControls';
 
 type GameSidePanelProps = {
   title: string;
@@ -38,15 +38,10 @@ export function GameSidePanel({
 
   return (
     <aside
-      className={`bg-blue-background flex flex-col gap-3 rounded-2xl p-4 ${className}`}
+      className={`bg-blue-frame flex flex-col gap-3 rounded-2xl p-4 ${className}`}
     >
       <div className="flex flex-1 flex-col rounded-sm bg-white">
-        <PanelBanner
-          bannerSrc={bannerSrc}
-          avatarSrc={avatarSrc}
-          avatarAlt={`${title} avatar image`}
-          bannerAlt={`${title} banner image`}
-        >
+        <PanelBanner bannerSrc={bannerSrc} avatarSrc={avatarSrc}>
           <Surface className="h-9 rounded-md px-2">
             <CountdownTimer
               duration={timerDuration}
