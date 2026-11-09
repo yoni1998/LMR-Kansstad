@@ -1,40 +1,11 @@
-[Logbook](/docs/logbook.md)
-[PVA](/docs/PVA.md)
-[blockers-and-dependencies](/docs/blockers-and-dependencies.md)
-[planning](/docs/planning.md)
+[Logbook](docs/logbook.md)
+[PVA](docs/PVA.md)
+[blockers-and-dependencies](docs/blockers-and-dependencies.md)
+[planning](docs/planning.md)
 
 # Next.js + TypeScript
 
 A scalable web application built with **Next.js**, **TypeScript**, **Tailwind CSS v4**, and **Node 24**.
-
-## Tech Stack
-
-- **Node 24** — Runtime used for development and project tooling.
-- **pnpm** — Package manager for installing dependencies and running scripts.
-- **Next.js + React + TypeScript** — Full-stack React framework with file-based routing, server rendering, and static type checking.
-- **Tailwind CSS v4** — Utility-first CSS framework for styling the application.
-- **ESLint** — Code quality checks using Next.js Core Web Vitals and TypeScript configurations, alongside custom rules + validates module dependencies and architectural boundaries.
-- **Prettier** — Consistent code formatting, including automatic Tailwind CSS class sorting.
-- **Playwright** — End-to-end (E2E) testing in a real browser.
-- **Husky** — Git hooks integration.
-
-## Architecture
-
-The project follows a **feature-based architecture inspired by Bulletproof React**, adapted to the Next.js App Router.
-
-Code is organized around application features rather than grouping everything by technical type. This keeps related components, hooks, API logic, schemas, and feature-specific types together.
-
-The architecture aims to establish clear boundaries between:
-
-- **App** — Next.js routes, layouts, loading states, error boundaries, and application-level composition.
-- **Features** — Self-contained business features and their related components, hooks, API logic, schemas, and state.
-- **Shared** — Reusable UI components, utilities, hooks, and other code that is not specific to a single feature.
-
-The `app/` directory handles routing and page composition, while feature-specific implementation lives in `features/`. This helps prevent route definitions from becoming tightly coupled to business logic.
-
-**Eslint** helps enforce these boundaries by detecting unwanted dependencies between modules.
-
-Next.js Server Components are used by default. Client Components are introduced only where browser-side interactivity, React state, or event handlers are required.
 
 ## Getting Started
 
@@ -58,6 +29,16 @@ Clone the repository, navigate to the project directory, and install the depende
 
 ```bash
 pnpm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the project root directory. This file is not included in the repository and must be created manually.
+
+Add the following environment variable:
+
+```env
+BASE_URL=https://lab.lfwd.be/
 ```
 
 ### Start the Development Server
@@ -150,14 +131,3 @@ The code-generation script targets `http://localhost:3000`. Make sure the Next.j
 | `pnpm test:e2e`         | Runs Playwright E2E tests.                       |
 | `pnpm test:e2e:ui`      | Opens the Playwright UI.                         |
 | `pnpm test:e2e:codegen` | Opens Playwright Codegen for the configured URL. |
-
-## Project Conventions
-
-- Use TypeScript for application code.
-- Prefer Server Components unless client-side interactivity is required.
-- Keep business logic inside its corresponding feature.
-- Keep shared components generic and independent of individual features.
-- Validate external input at application boundaries.
-- Keep environment variables and server-only logic out of Client Components.
-- Use ESLint for code quality and Prettier for formatting.
-- Write Playwright tests for critical user flows.
