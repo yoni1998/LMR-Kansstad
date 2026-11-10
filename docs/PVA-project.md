@@ -1,12 +1,12 @@
 # Plan van aanpak – LMR technische test
 
-## 1. Inleiding en aanleiding
-
 VDAB wil een webapplicatie laten ontwikkelen waarmee leerlingen van het zesde leerjaar op een speelse manier kennismaken met de arbeidsmarkt en nadenken over hun toekomstige studiekeuze.
 
 De applicatie is opgevat als een educatief spel waarin kinderen ontdekken wat verschillende beroepen inhouden en welke factoren daarbij een rol spelen, zoals vaardigheden, interesses en werkomstandigheden. Op die manier krijgen ze een beter inzicht in de mogelijkheden op de arbeidsmarkt en worden ze gestimuleerd om later een bewustere studiekeuze te maken.
 
-## 2. Doelstellingen
+---
+
+## 🎯 Doelstellingen
 
 Het doel is een kindvriendelijke, toegankelijke en gebruiksvriendelijke webapplicatie te ontwikkelen die aansluit op de bestaande API en waarin alle voorziene functionaliteiten correct werken.
 
@@ -16,10 +16,11 @@ De applicatie moet een duidelijke en intuïtieve gebruikersflow bieden, zodat ki
 - **Gebruiksvriendelijk:** een intuïtieve applicatie die zonder bijkomende uitleg te gebruiken is. Interacties en statussen (geselecteerd, juist, fout en uitgeschakeld) zijn duidelijk herkenbaar.
 - **Toegankelijk:** naleving van de toegankelijkheidsrichtlijnen WCAG 2.2 niveau AA, met aandacht voor toetsenbordbediening, voldoende kleurcontrast en ondersteuning van `prefers-reduced-motion`.
 - **Privacy en GDPR:** er worden geen gebruikersaccounts, tracking of cookies gebruikt. Enkel de spelvoortgang wordt tijdelijk opgeslagen in `sessionStorage` en blijft beperkt tot de browsersessie.
-- **Functioneel correct:** alle voorziene functionaliteiten worden volgens de functionele vereisten geïmplementeerd en werken zoals verwacht.
+- **Functioneel correct:** alle voorziene functionaliteiten worden volgens de functionele vereisten geïmplementeerd en werken zoals verwacht, inclusief foutafhandeling en het correct afhandelen van edge cases.
 - **Consistent en responsive:** herbruikbare componenten en uniforme interactiepatronen doorheen alle levels, met een optimale gebruikerservaring op zowel mobiele apparaten als desktops.
+- **Performant:** de applicatie laadt snel en reageert vlot, ook op oudere schoolklassen-tablets en traag wifi.
 
-## 3. Technische architectuur en stack
+## 🧱 Stack
 
 | Technologie         | Motivatie                                                                                                                                                                                                                                                                                                              |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -31,7 +32,7 @@ De applicatie moet een duidelijke en intuïtieve gebruikersflow bieden, zodat ki
 | **pnpm**            | Efficiënt schijfgebruik, snelle installaties en strikte dependency-resolutie.                                                                                                                                                                                                                                          |
 | **Tailwind CSS v4** | Styling dicht bij de component, met consistente design tokens.                                                                                                                                                                                                                                                         |
 
-## 4. Codekwaliteit en CI/CD
+## ✅ Codekwaliteit en CI/CD
 
 Om de codekwaliteit te bewaken en fouten vroegtijdig op te sporen, gebruik ik de volgende tools en afspraken:
 
@@ -42,7 +43,8 @@ Om de codekwaliteit te bewaken en fouten vroegtijdig op te sporen, gebruik ik de
   - Features importeren elkaar niet (`import/no-restricted-paths`).
 - **Prettier:** zorgt voor uniforme codeformattering.
 - **Playwright:** test de meest cruciale gebruikersflows in een echte browser.
-- **axe-core/playwright:** controleert de toegankelijkheid van de applicatie.
+- **Lighthouse:** analyseert performance, accessibility, best practices en SEO.
+- **React profiler::** analyseert componentrenders en helpt onnodige re-renders opsporen.
 - **Husky:** voert linting en Prettier uit bij een commit en de typecontrole bij een push. Uitgebreidere tests draaien in de CI.
 - **Dependabot:** meldt dependency-updates en beveiligingsproblemen via pull requests.
 - **GitHub Actions:** voert bij elke push en pull request de volgende controles uit:
@@ -54,7 +56,7 @@ Om de codekwaliteit te bewaken en fouten vroegtijdig op te sporen, gebruik ik de
 
 Een wijziging is pas klaar wanneer alle controles succesvol zijn uitgevoerd.
 
-## 5. Architectuur en mappenstructuur
+## 🗂️ Structuur
 
 Ik hanteer een feature-based architectuur, geïnspireerd op [Bulletproof React](https://github.com/alan2207/bulletproof-react), waarbij functionaliteiten per feature worden georganiseerd en gedeelde, generieke UI-componenten in een aparte `components`-folder worden ondergebracht.
 Een onderdeel blijft binnen zijn feature zolang alleen die feature het gebruikt. Pas wanneer een tweede feature het nodig heeft, verhuist het naar `src/`.
@@ -107,12 +109,11 @@ project/
 │   │   ├── world-map/                    # Wereldkaart en bijhorende functionaliteit
 │   │   ├── game-session/                 # Spelsessie: components, hooks, API, store en helpers
 │   │   ├── challenges/                   # Verschillende soorten speluitdagingen
-│   │   │   ├── core/                     # Gemeenschappelijke contracten, registry en schema's
+│   │   │   ├── core/                     # Gemeenschappelijke contracten en schema's
 │   │   │   ├── multiple-choice/          # Meerkeuzevragen
 │   │   │   ├── tile-match/               # Tegels combineren
 │   │   │   └── phone-call/               # Telefoongesprekken als speluitdaging
 │   │   ├── results/                      # Resultaten en scoreverwerking
-│   │   └── help/                         # Hulpfunctionaliteit
 │   │
 │   ├── components/                       # Generieke UI-componenten (atoms en molecules)
 │   ├── api/                              # Gedeelde API-configuratie en infrastructuur
@@ -124,7 +125,7 @@ project/
 └── package.json
 ```
 
-## 6. Data-driven
+## 🔌 Data-driven
 
 De opdracht bevat drie vragen, maar de applicatie moet kunnen groeien naar meer levels, meer beroepen en andere soorten uitdagingen. Daarom beschrijf ik de inhoud als data en laat ik één generieke UI die data renderen. Een nieuw beroep of level is dan data toevoegen en geen UI-code schrijven.
 
@@ -154,24 +155,59 @@ Dit is genoeg om een overzichtspagina te bouwen en om het zijpaneel van een job 
     "question": "Welke taken horen bij het takenpakket van een drukafwerker?",
     "timeLimitSeconds": 30,
     "answers": [
-      { "id": "a1", "text": "Drukwerk snijden en vouwen" },
-      { "id": "a2", "text": "Boeken binden" },
-      { "id": "a3", "text": "Websites programmeren" },
-      { "id": "a4", "text": "Pakketten uitleveren" }
+      { "id": "a1", "answer": "Drukwerk snijden en vouwen", "correct": true },
+      { "id": "a2", "answer": "Boeken binden", "correct": false },
+      { "id": "a3", "answer": "Websites programmeren", "correct": false },
+      { "id": "a4", "answer": "Pakketten uitleveren", "correct": false }
     ]
   },
-...
+  {
+    "id": "lvl-2",
+    "gameType": "tile-match",
+    "description": "Tik op alle machines die een drukafwerker gebruikt.",
+    "question": "Welke machines horen bij het werk van een drukafwerker?",
+    "timeLimitSeconds": 45,
+    "grid": { "columns": 3 },
+    "tiles": [
+      {
+        "id": "t1",
+        "label": "Snijmachine",
+        "image": "/images/tiles/snijmachine.webp",
+        "correct": true
+      },
+      {
+        "id": "t2",
+        "label": "Vouwmachine",
+        "image": "/images/tiles/vouwmachine.webp",
+        "correct": true
+      },
+      ...
+    ]
+  }
 ]
 ```
+
+De correcte antwoorden worden uitsluitend op de server bewaard en gevalideerd. Bij het laden van een vraag worden ze uit de data gefilterd, zodat ze niet naar de client gaan. Pas nadat de speler zijn antwoord heeft ingediend, stuurt de API per antwoord terug of het correct was, zodat de client het resultaat kan tonen. Tot dat moment zijn ze niet zichtbaar via de Network-tab of client-side code.
 
 - **Nieuw level of nieuw beroep:** alleen data toevoegen.
 - **Nieuw speltype:** één nieuwe component schrijven, daarna zijn er onbeperkt levels van dat type mogelijk.
 
-De correcte antwoorden worden uitsluitend op de server bewaard en gevalideerd. Zo worden ze niet blootgesteld aan de client en zijn ze niet zichtbaar via de Network-tab of client-side code.
+## 🛠️ Aanpak en methodiek
 
-## 7. Aanpak en methodiek
+### Gebruik van AI tijdens de ontwikkeling
 
-### Fases en resultaten
+Tijdens het ontwikkelproces wordt actief gebruikgemaakt van AI als ondersteunende tool om de efficiëntie en kwaliteit van de ontwikkeling te verhogen.
+
+AI wordt onder andere ingezet voor:
+
+- **Herbruikbare componenten:** ondersteunen bij het ontwikkelen en optimaliseren van generieke componenten.
+- **Layouts:** opzetten en uitwerken van layouts op basis van de aangeleverde designs.
+- **Functionaliteit en flows:** ondersteunen bij het implementeren van functionaliteiten en het uitwerken van de gebruikersflows.
+- **Toegankelijkheid:** verbeteren van de toegankelijkheid door onder andere semantische HTML, ARIA-attributen en andere accessibility best practices toe te passen.
+
+AI dient hierbij als hulpmiddel tijdens de ontwikkeling. De gegenereerde code en suggesties worden steeds geëvalueerd, getest en waar nodig aangepast.
+
+## 🚀 Fases en resultaten
 
 | Fase                                | Resultaat                                                                                                       |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -208,7 +244,7 @@ Individueel werk ik met een Kanban-bord met drie kolommen:
 
 De fases worden opgesplitst in kleine tickets. Ik beperk het aantal gelijktijdige taken in uitvoering tot maximaal twee, zodat ik voldoende focus behoud.
 
-### Teamwerkwijze: Scrum
+### Teamwerkwijze: Agile (Scrum)
 
 In een team zou ik werken met Scrum in sprints van twee weken.
 
@@ -220,10 +256,10 @@ In een team zou ik werken met Scrum in sprints van twee weken.
 
 Het Scrum-bord krijgt extra kolommen zoals `In Review`, `blocked` en `Testing`.
 
-## 8. Planning
+## 🗓️ Planning
 
 [planning](./planning.md)
 
-## 9. Risico-analyse
+## ⚠️ Afhankelijkheden en risico's
 
 [blockers-and-dependencies](./blockers-and-dependencies.md)

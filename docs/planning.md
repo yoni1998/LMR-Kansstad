@@ -1,4 +1,4 @@
-## 5. Developmentplanning en tijdsinschatting
+## Developmentplanning en tijdsinschatting
 
 Voor de ontwikkeling wordt per taak een tijdsinschatting gemaakt op basis van drie scenario's:
 
@@ -6,7 +6,7 @@ Voor de ontwikkeling wordt per taak een tijdsinschatting gemaakt op basis van dr
 - **Realistisch:** de meest waarschijnlijke tijdsinschatting.
 - **Pessimistisch:** wanneer onverwachte problemen of extra complexiteit optreden.
 
-## 4. Inschatting en doorlooptijd
+## Inschatting en doorlooptijd
 
 Onderstaande tabel geeft een inschatting van de benodigde ontwikkelingstijd per fase en taak. Er wordt gewerkt met drie scenario's: optimistisch, realistisch en pessimistisch.
 
@@ -18,24 +18,23 @@ De inschattingen zijn uitgedrukt in werkdagen, waarbij één werkdag overeenkomt
 |                            | Design tokens                                           |                 15 min |                 30 min |                 45 min |
 |                            | Code quality (ESLint, Prettier, TypeScript, ...)        |                 30 min |                  1 uur |                1,5 uur |
 | **Component development**  | 18 herbruikbare componenten                             |                3 dagen |                4 dagen |                5 dagen |
-| **Applicatieontwikkeling** | 10 Schermen opbouwen op basis van Figma                 |                3 dagen |                5 dagen |                7 dagen |
-|                            | Gebruikersflows en interacties                          |                0,5 dag |                  1 dag |                2 dagen |
-|                            | API-integraties                                         |                  1 dag |                2 dagen |              2,5 dagen |
+| **Applicatieontwikkeling** | 10 unieke schermen opbouwen op basis van Figma          |                3 dagen |                5 dagen |                7 dagen |
+|                            | Gebruikersflows en interacties                          |                  1 dag |              1,5 dagen |              2,5 dagen |
+|                            | API-integraties                                         |                0,5 dag |                  1 dag |                2 dagen |
 |                            | State management                                        |                0,5 dag |                  1 dag |                2 dagen |
 |                            | Error handling en edge cases                            |                0,5 dag |                  1 dag |                2 dagen |
-| **UI & UX**                | Responsive design                                       |                  1 dag |                2 dagen |                3 dagen |
+| **UI & UX**                | Responsive design                                       |                  1 dag |                2 dagen |              2,5 dagen |
 |                            | Toegankelijkheid (WCAG)                                 |                  1 dag |              1,5 dagen |                2 dagen |
 |                            | Animaties en overgangen                                 |                0,5 dag |                  1 dag |              1,5 dagen |
-|                            | Performance optimalisatie                               |                0,5 dag |                  1 dag |                2 dagen |
 | **Testing & oplevering**   | Unit- en integration tests                              |                0,5 dag |                  1 dag |              1,5 dagen |
-|                            | End-to-endtests (Playwright)                            |                0,5 dag |                  1 dag |              1,5 dagen |
-|                            | Cross-browser testing                                   |                0,5 dag |                  1 dag |              1,5 dagen |
+|                            | End-to-endtests (Playwright)                            |                0,5 dag |                  1 dag |                  1 dag |
+|                            | Cross-browser testing                                   |                0,5 dag |                  1 dag |                  1 dag |
 |                            | Bugs oplossen en finale validatie                       |                0,5 dag |                  1 dag |                2 dagen |
 |                            | Documentatie                                            |                0,5 dag |                  1 dag |              1,5 dagen |
 |                            | CI/CD en deployment                                     |                0,5 dag |                  1 dag |              1,5 dagen |
-| **Totaal**                 |                                                         | **117 uur (15 dagen)** | **206 uur (26 dagen)** | **312 uur (39 dagen)** |
+| **Totaal**                 |                                                         | **113 uur (14 dagen)** | **195 uur (24 dagen)** | **284 uur (36 dagen)** |
 
-De realistische inschatting bedraagt ongeveer 26 werkdagen, wat overeenkomt met ongeveer vijf werkweken.
+De realistische inschatting bedraagt ongeveer 24 werkdagen, wat overeenkomt met ongeveer vijf werkweken.
 
 De effectieve doorlooptijd is afhankelijk van verschillende factoren:
 
