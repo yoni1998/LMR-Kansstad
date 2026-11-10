@@ -1,4 +1,4 @@
-## 1. Dependencies
+## Dependencies
 
 - **Figma-designs en design tokens:** Beschikbaarheid van de UI voor de happy flow, loading states, foutmeldingen en lege resultaten. Daarnaast moeten de design tokens voor onder andere kleuren en typografie (fonts, font sizes en font weights) beschikbaar zijn.
 - **API-contract:** beschikbare endpoints, request- en responsemodellen en foutafhandeling.
@@ -6,7 +6,7 @@
 - **Responsive design:** afspraken over de layout op mobiel, tablet en desktop.
 - **Technische afspraken:** gebruikte technologieën, projectstructuur en afspraken rond codekwaliteit.
 
-## 2. Blockers
+## Blockers
 
 - **Ontbrekende Figma-designs:** er is onduidelijkheid over de gewenste UI.
 - **Ontbrekend API-contract:** het is onduidelijk hoe de data wordt opgehaald en verwerkt. Leg het contract vast of werk tijdelijk met mocks.
@@ -14,7 +14,7 @@
 - **Niet-beschikbare backend:** testen met echte data is niet mogelijk. Gebruik mockdata tot de API beschikbaar is.
 - **Ontbrekende testdata of toegangsrechten:** bepaalde functionaliteiten kunnen niet getest worden. Vraag toegang en testdata tijdig aan.
 
-## 3. Risico's
+## Risico's
 
 - **Wijzigende requirements:** wijzigingen tijdens de ontwikkeling kunnen extra werk en vertraging veroorzaken. Stem de scope en acceptatiecriteria vooraf af.
 - **Afwijkende API-responses:** wanneer de API afwijkt van het contract, kunnen er integratieproblemen ontstaan. Controleer het contract en voorzie integratietests.
@@ -25,7 +25,7 @@
 - **Onduidelijke prioriteiten:** minder belangrijke features kunnen te veel tijd innemen. Implementeer eerst de must-haves en breid daarna verder uit.
 - **Gebruikers werken op trage of oude toestellen:** scholen werken vaak met oudere laptops, tablets en trage verbindingen. Zware animaties of grote bestanden kunnen het spel onbruikbaar maken. Test de webapplicatie op verschillende browsers en browserversies, houd animaties speels maar eenvoudig en beperk de grootte van afbeeldingen en bundels.
 
-## 4. Vragen voor het team
+## Vragen voor het team
 
 Deze vragen hebben betrekking rond het design van de hele applicatie.
 
