@@ -38,7 +38,7 @@ jobs:
       - name: Setup project
         uses: ./.github/actions/setup-project
 
-      - name: Run typecheck, lint, format and circular dependencies checks
+      - name: Run typecheck, lint, format checks
         run: pnpm run check
 
   test:

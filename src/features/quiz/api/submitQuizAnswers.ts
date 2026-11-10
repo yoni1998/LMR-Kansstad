@@ -1,12 +1,12 @@
 import type {
-  ValidateQuizAnswersRequest,
-  ValidateQuizAnswersResponse,
+  AnswerSubmission,
+  AnswerValidationResult,
 } from '../model/quiz.types';
 import { API } from './api.config';
 
 export async function submitQuizAnswers(
-  payload: ValidateQuizAnswersRequest,
-): Promise<ValidateQuizAnswersResponse> {
+  payload: AnswerSubmission,
+): Promise<AnswerValidationResult> {
   const response = await fetch(API.ENDPOINTS.QUIZ.VALIDATE_ANSWERS, {
     method: 'POST',
     headers: {

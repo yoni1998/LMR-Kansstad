@@ -1,31 +1,22 @@
 import type { z } from 'zod';
-import { ValidateQuizAnswersRequestSchema } from './quiz.schema';
+import {
+  answerResultSchema,
+  answerSubmissionSchema,
+  answerValidationResultSchema,
+  quizAnswerSchema,
+  quizQuestionSchema,
+  quizSchema,
+} from './quiz.schema';
 
-export type QuizAnswer = {
-  answer: string;
-  correct?: boolean;
-};
+export type QuizAnswer = z.infer<typeof quizAnswerSchema>;
+export type QuizQuestion = z.infer<typeof quizQuestionSchema>;
+export type Quiz = z.infer<typeof quizSchema>;
 
-export type QuizQuestion = {
-  question: string;
-  time_limit_s: number;
-  answers: QuizAnswer[];
-};
-
-export type QuizAnswerResult = {
-  answer: string;
-  selected: boolean;
-  correct: boolean;
-};
-
-export type ValidateQuizAnswersRequest = z.infer<
-  typeof ValidateQuizAnswersRequestSchema
+export type AnswerResult = z.infer<typeof answerResultSchema>;
+export type AnswerSubmission = z.infer<typeof answerSubmissionSchema>;
+export type AnswerValidationResult = z.infer<
+  typeof answerValidationResultSchema
 >;
-
-export type ValidateQuizAnswersResponse = {
-  answers: QuizAnswerResult[];
-  isCorrect: boolean;
-};
 
 export type AnswerOptionState =
   'default' | 'selected' | 'correct' | 'incorrect';

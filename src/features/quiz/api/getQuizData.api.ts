@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { cacheLife } from 'next/cache';
+import { quizSchema } from '../model/quiz.schema';
 import { QuizQuestion } from '../model/quiz.types';
 import { API } from './api.config';
 
@@ -14,5 +15,7 @@ export const getQuizData = async (): Promise<QuizQuestion[]> => {
     throw new Error('Failed to fetch quiz data');
   }
 
-  return response.json();
+  const data: unknown = await response.json();
+
+  return quizSchema.parse(data);
 };

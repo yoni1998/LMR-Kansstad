@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 
-import { ValidateQuizAnswersRequestSchema } from '@/features/quiz/model/quiz.schema';
+import { answerSubmissionSchema } from '@/features/quiz/model/quiz.schema';
 import { validateQuizAnswers } from '@/features/quiz/validateQuizAnswers';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const validation = ValidateQuizAnswersRequestSchema.safeParse(body);
+    const validation = answerSubmissionSchema.safeParse(body);
 
     if (!validation.success) {
       return NextResponse.json(
