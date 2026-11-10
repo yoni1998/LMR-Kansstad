@@ -2,37 +2,32 @@
 
 import { useEffect } from 'react';
 
-import { useShallow } from 'zustand/shallow';
 import { useQuizHydration } from '../hooks/useQuizHydration';
 import { useQuizStore } from '../model/quiz.store';
 import { QuizQuestion } from '../model/quiz.types';
-import { MultipleChoiceQuizPanel } from './MultipleChoiceQuizPanel';
+import { MultipleChoiceQuiz } from './MultipleChoiceQuiz';
 
 type GameSessionProps = {
   questions: QuizQuestion[];
-  className?: string;
 };
 
-export function GameSession({ questions, className = '' }: GameSessionProps) {
+export function GameSession({ questions }: GameSessionProps) {
   const questionIndex = useQuizStore((s) => s.currentQuestionIndex);
   const score = useQuizStore((s) => s.score);
   const expiresAt = useQuizStore((s) => s.expiresAt);
-
-  const { startTimer, nextQuestion, incrementScore, reset } = useQuizStore(
-    useShallow((s) => ({
-      startTimer: s.startTimer,
-      nextQuestion: s.nextQuestion,
-      incrementScore: s.incrementScore,
-      reset: s.reset,
-    })),
-  );
+  const startTimer = useQuizStore((s) => s.startTimer);
+  const nextQuestion = useQuizStore((s) => s.nextQuestion);
+  const incrementScore = useQuizStore((s) => s.incrementScore);
+  const reset = useQuizStore((s) => s.reset);
 
   const hasHydrated = useQuizHydration();
 
   const question = questions[questionIndex];
-  const nextQuestionData = questions[questionIndex + 1];
-  const isLastQuestion = !nextQuestionData;
+  const nextIndex = questionIndex + 1;
+  const nextQuestionData = questions[nextIndex];
 
+  /* Only for the very first question: after a refresh, expiresAt is already
+     restored from sessionStorage, so the timer must not restart. */
   useEffect(() => {
     if (!hasHydrated || !question || expiresAt !== null) return;
 
@@ -40,14 +35,19 @@ export function GameSession({ questions, className = '' }: GameSessionProps) {
   }, [hasHydrated, question, expiresAt, startTimer]);
 
   function handleContinue(isAllCorrect: boolean) {
-    // Laatste level: "Opnieuw" start het spel van voren af aan.
-    if (isLastQuestion) return reset();
+    // Last level: "Opnieuw" restarts the game from the beginning.
+    if (!nextQuestionData) return reset();
 
     if (isAllCorrect) incrementScore();
     nextQuestion(nextQuestionData.time_limit_s);
   }
 
-  if (!hasHydrated) return null;
+  if (!hasHydrated)
+    return (
+      <p role="status" className="text-center">
+        Quiz wordt geladen...
+      </p>
+    );
 
   if (!question) {
     return (
@@ -57,19 +57,21 @@ export function GameSession({ questions, className = '' }: GameSessionProps) {
     );
   }
 
+  // Briefly null between hydration and startTimer.
   if (expiresAt === null) return null;
 
+  /* key forces a fresh mount per question, so the panel's local state
+   (selectedAnswers, isTimeUp, mutation) resets automatically. */
   return (
-    <MultipleChoiceQuizPanel
+    <MultipleChoiceQuiz
       key={questionIndex}
       questionIndex={questionIndex}
       totalQuestions={questions.length}
       score={score}
       question={question.question}
-      expiresAt={expiresAt}
+      expiresAt={expiresAt ?? null}
       answers={question.answers}
       onContinue={handleContinue}
-      className={className}
     />
   );
 }

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { TimerIcon } from '@/components/icons/TimerIcon';
+import { useCountdown } from '../hooks/useCountdown';
 
 type CountdownTimerProps = {
-  duration: number;
+  expiresAt: number;
   size?: 'sm' | 'md' | 'lg';
   onComplete?: () => void;
   className?: string;
@@ -29,35 +29,12 @@ function formatTime(totalSeconds: number) {
 }
 
 export function CountdownTimer({
-  duration,
+  expiresAt,
   size = 'md',
   onComplete,
   className = '',
 }: CountdownTimerProps) {
-  const [remaining, setRemaining] = useState(duration);
-
-  // Houdt de nieuwste callback bij zonder de timer te herstarten
-  const onCompleteRef = useRef(onComplete);
-
-  useEffect(() => {
-    onCompleteRef.current = onComplete;
-  }, [onComplete]);
-
-  useEffect(() => {
-    const endsAt = Date.now() + duration * 1000;
-
-    const id = setInterval(() => {
-      const left = Math.ceil((endsAt - Date.now()) / 1000);
-      setRemaining(left);
-
-      if (left === 0) {
-        clearInterval(id);
-        onCompleteRef.current?.();
-      }
-    }, 250);
-
-    return () => clearInterval(id);
-  }, [duration]);
+  const remaining = useCountdown(expiresAt, onComplete);
 
   return (
     <div
@@ -66,7 +43,6 @@ export function CountdownTimer({
       className={`flex items-center justify-center font-bold ${sizes[size]} ${className}`}
     >
       <TimerIcon aria-hidden="true" className={iconSizes[size]} />
-
       <span className="w-12 shrink-0 text-center tabular-nums">
         {formatTime(remaining)}
       </span>

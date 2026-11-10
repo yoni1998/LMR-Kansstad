@@ -16,7 +16,7 @@ export async function submitQuizAnswers(
   });
 
   if (!response.ok) {
-    throw new Error('Antwoorden konden niet worden gecontroleerd.');
+    throw new Error('Answers could not be validated.');
   }
 
   return response.json();

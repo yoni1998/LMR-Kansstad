@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { getQuizData } from './api/getQuiz.api';
+import { getQuizData } from './api/getQuizData.api';
 import type {
   ValidateQuizAnswersRequest,
   ValidateQuizAnswersResponse,

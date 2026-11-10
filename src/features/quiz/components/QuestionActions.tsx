@@ -4,7 +4,7 @@ import { Button } from '@/components/Button';
 type QuestionActionsProps = {
   hasError: boolean;
   isSuccess: boolean;
-  canSubmit: boolean;
+  isSubmitDisabled: boolean;
   onSubmit: () => void;
   onShowResult: () => void;
 };
@@ -15,7 +15,7 @@ const WRAPPER_CLASS_NAME =
 export function QuestionActions({
   hasError,
   isSuccess,
-  canSubmit,
+  isSubmitDisabled,
   onSubmit,
   onShowResult,
 }: QuestionActionsProps) {
@@ -52,7 +52,7 @@ export function QuestionActions({
 
       <Button
         color="yellow"
-        disabled={!canSubmit}
+        disabled={!isSubmitDisabled}
         onClick={onSubmit}
         className="w-full"
       >
