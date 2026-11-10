@@ -38,7 +38,7 @@ export function MultipleChoiceQuiz({
   const { submit, result, isPending, isError, isSuccess } =
     useSubmitQuizAnswers();
 
-  const { showResult } = useShowLevelResult({
+  const { showResult, modal } = useShowLevelResult({
     level,
     totalQuestions,
     isLastLevel: level === totalQuestions,
@@ -111,6 +111,7 @@ export function MultipleChoiceQuiz({
           onShowResult={showResult}
         />
       </div>
+      {modal}
     </section>
   );
 }

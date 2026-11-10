@@ -1,4 +1,4 @@
-import { useModalStore } from '@/components/modal/modal.store';
+import { useState } from 'react';
 import { LevelCompleteModal } from '../components/LevelCompleteModal';
 
 type LevelMessageParams = {
@@ -43,36 +43,38 @@ export function useShowLevelResult({
   finalScore,
   onContinue,
 }: UseShowLevelResultParams) {
-  const openModal = useModalStore((s) => s.openModal);
-  const closeModal = useModalStore((s) => s.closeModal);
+  const [isOpen, setIsOpen] = useState(false);
 
   function showResult() {
-    // Applause only for a perfect run (every question fully correct).
     if (isAllCorrect && finalScore === totalQuestions) {
       new Audio('/audio/applause.mp3').play().catch(() => {
         // eslint-disable-next-line no-console
         console.error('Audio is not available');
       });
     }
-    openModal(
-      <LevelCompleteModal
-        level={level}
-        maxLevel={totalQuestions}
-        message={getLevelMessage({
-          isLastLevel,
-          isAllCorrect,
-          isTimeUp,
-          finalScore,
-          totalQuestions,
-        })}
-        actionLabel={isLastLevel ? 'Opnieuw' : 'Volgend level'}
-        onContinue={() => {
-          closeModal();
-          onContinue(isAllCorrect);
-        }}
-      />,
-    );
+
+    setIsOpen(true);
   }
 
-  return { showResult };
+  const modal = isOpen && (
+    <LevelCompleteModal
+      open={isOpen}
+      level={level}
+      maxLevel={totalQuestions}
+      message={getLevelMessage({
+        isLastLevel,
+        isAllCorrect,
+        isTimeUp,
+        finalScore,
+        totalQuestions,
+      })}
+      actionLabel={isLastLevel ? 'Opnieuw' : 'Volgend level'}
+      onContinue={() => {
+        setIsOpen(false);
+        onContinue(isAllCorrect);
+      }}
+    />
+  );
+
+  return { showResult, modal };
 }
