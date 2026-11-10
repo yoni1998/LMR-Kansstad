@@ -113,6 +113,10 @@
   }
 }
 
+@utility panel {
+  @apply bg-blue-frame flex min-h-[calc(100dvh-2rem)] flex-col rounded-2xl p-4;
+}
+
 body {
   @apply text-body bg-background font-sans text-white;
 }

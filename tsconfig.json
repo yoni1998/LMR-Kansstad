@@ -19,12 +19,8 @@
       }
     ],
     "paths": {
-      "@/api/*": ["./src/api/*"],
       "@/components/*": ["./src/components/*"],
-      "@/libs/*": ["./src/libs/*"],
       "@/features/*": ["./src/features/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/utils/*": ["./src/utils/*"],
       "@/assets/*": ["./src/assets/*"]
     }
   },

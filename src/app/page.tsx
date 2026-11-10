@@ -1,6 +1,6 @@
 import avatarSrc from '@/assets/illustrations/job-illustration-avatar.webp';
 import bannerSrc from '@/assets/illustrations/job-illustration-background.webp';
-import { getQuizData } from '@/features/quiz/api/getQuiz.api';
+import { getQuizData } from '@/features/quiz/api/getQuizData.api';
 import { GameSession } from '@/features/quiz/components/GameSession';
 import { GameSidePanel } from '@/features/quiz/components/side-panel/GameSidePanel';
 
@@ -24,13 +24,9 @@ export default async function GamePage() {
         bannerSrc={bannerSrc}
         avatarSrc={avatarSrc}
         progressMax={questions.length}
-        timerDuration={3000}
-        className="min-h-[calc(100dvh-2rem)]"
       />
-      <GameSession
-        questions={questions}
-        className="min-h-[calc(100dvh-2rem)]"
-      />
+
+      <GameSession questions={questions} />
     </main>
   );
 }
