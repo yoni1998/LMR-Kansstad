@@ -4,8 +4,7 @@ import { ProgressBar } from '@/components/ProgressBar';
 
 type LevelCompleteModalProps = {
   level: number;
-  progressValue: number;
-  progressMax: number;
+  maxLevel: number;
   message: string;
   actionLabel: string;
   onContinue: () => void;
@@ -13,19 +12,14 @@ type LevelCompleteModalProps = {
 
 export function LevelCompleteModal({
   level,
-  progressValue,
-  progressMax,
+  maxLevel,
   message,
   actionLabel,
   onContinue,
 }: LevelCompleteModalProps) {
   return (
     <Modal open={true} title={`Level ${level} voltooid!`} dismissible={false}>
-      <ProgressBar
-        value={progressValue}
-        max={progressMax}
-        className="w-2/3 rounded-md"
-      />
+      <ProgressBar value={level} max={maxLevel} className="w-2/3 rounded-md" />
       <ModalDescription>{message}</ModalDescription>
       <Button
         color="yellow"

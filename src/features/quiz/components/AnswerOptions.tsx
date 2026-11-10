@@ -1,5 +1,5 @@
-import { getOptionState } from '../model/quiz.helpers';
 import type {
+  AnswerOptionState,
   QuizAnswer,
   ValidateQuizAnswersResponse,
 } from '../model/quiz.types';
@@ -12,6 +12,22 @@ type AnswerOptionsProps = {
   disabled: boolean;
   onToggle: (answer: string) => void;
 };
+
+function getOptionState(
+  answer: string,
+  selectedAnswers: readonly string[],
+  result?: ValidateQuizAnswersResponse,
+): AnswerOptionState {
+  if (!result) {
+    return selectedAnswers.includes(answer) ? 'selected' : 'default';
+  }
+
+  const checked = result.answers.find((item) => item.answer === answer);
+
+  if (checked?.correct) return 'correct';
+  if (checked?.selected) return 'incorrect';
+  return 'default';
+}
 
 export function AnswerOptions({
   answers,
