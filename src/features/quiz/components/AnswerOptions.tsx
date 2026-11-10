@@ -1,14 +1,14 @@
 import type {
   AnswerOptionState,
   QuizAnswer,
-  ValidateQuizAnswersResponse,
+  AnswerValidationResult,
 } from '../model/quiz.types';
 import { OptionButton } from './OptionButton';
 
 type AnswerOptionsProps = {
   answers: QuizAnswer[];
   selectedAnswers: readonly string[];
-  result?: ValidateQuizAnswersResponse;
+  result?: AnswerValidationResult;
   disabled: boolean;
   onToggle: (answer: string) => void;
 };
@@ -16,7 +16,7 @@ type AnswerOptionsProps = {
 function getOptionState(
   answer: string,
   selectedAnswers: readonly string[],
-  result?: ValidateQuizAnswersResponse,
+  result?: AnswerValidationResult,
 ): AnswerOptionState {
   if (!result) {
     return selectedAnswers.includes(answer) ? 'selected' : 'default';

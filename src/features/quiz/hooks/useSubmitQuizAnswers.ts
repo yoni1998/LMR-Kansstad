@@ -1,22 +1,26 @@
 import { useState } from 'react';
 import { submitQuizAnswers } from '../api/submitQuizAnswers';
-import {
-  ValidateQuizAnswersRequest,
-  ValidateQuizAnswersResponse,
-} from '../model/quiz.types';
+import { AnswerSubmission, AnswerValidationResult } from '../model/quiz.types';
+import { answerValidationResultSchema } from './../model/quiz.schema';
 
 export function useSubmitQuizAnswers() {
-  const [result, setResult] = useState<ValidateQuizAnswersResponse>();
+  const [result, setResult] = useState<AnswerValidationResult>();
   const [isPending, setIsPending] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  async function submit(payload: ValidateQuizAnswersRequest) {
+  async function submit(payload: AnswerSubmission) {
     setIsPending(true);
     setIsError(false);
 
     try {
       const answers = await submitQuizAnswers(payload);
-      setResult(answers);
+      const validation = answerValidationResultSchema.safeParse(answers);
+
+      if (!validation.success) {
+        throw new Error('Invalid quiz response');
+      }
+
+      setResult(validation.data);
     } catch {
       setIsError(true);
     } finally {

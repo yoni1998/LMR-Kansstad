@@ -2,14 +2,14 @@ import 'server-only';
 
 import { getQuizData } from './api/getQuizData.api';
 import type {
-  ValidateQuizAnswersRequest,
-  ValidateQuizAnswersResponse,
+  AnswerSubmission,
+  AnswerValidationResult,
 } from './model/quiz.types';
 
 export async function validateQuizAnswers({
   questionIndex,
   selectedAnswers,
-}: ValidateQuizAnswersRequest): Promise<ValidateQuizAnswersResponse> {
+}: AnswerSubmission): Promise<AnswerValidationResult> {
   const quizData = await getQuizData();
   const question = quizData[questionIndex];
 
