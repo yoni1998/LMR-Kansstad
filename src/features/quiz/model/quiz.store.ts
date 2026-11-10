@@ -24,6 +24,7 @@ export const useQuizStore = create<QuizState>()(
 
       startTimer: (duration) =>
         set({
+          // Store the absolute expiration timestamp instead of the duration, so the remaining time can be recalculated after a page refresh.
           expiresAt: Date.now() + duration * 1000,
         }),
 
