@@ -5,7 +5,7 @@ import { validateQuizAnswers } from '@/features/quiz/validateQuizAnswers';
 
 export async function POST(request: Request) {
   try {
-    const body: unknown = await request.json();
+    const body = await request.json();
 
     const validation = ValidateQuizAnswersRequestSchema.safeParse(body);
 

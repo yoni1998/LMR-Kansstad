@@ -6,17 +6,17 @@ import {
 } from '../model/quiz.types';
 
 export function useSubmitQuizAnswers() {
-  const [data, setData] = useState<ValidateQuizAnswersResponse>();
+  const [result, setResult] = useState<ValidateQuizAnswersResponse>();
   const [isPending, setIsPending] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  async function mutate(payload: ValidateQuizAnswersRequest) {
+  async function submit(payload: ValidateQuizAnswersRequest) {
     setIsPending(true);
     setIsError(false);
 
     try {
       const answers = await submitQuizAnswers(payload);
-      setData(answers);
+      setResult(answers);
     } catch {
       setIsError(true);
     } finally {
@@ -24,5 +24,11 @@ export function useSubmitQuizAnswers() {
     }
   }
 
-  return { mutate, data, isPending, isError, isSuccess: data !== undefined };
+  return {
+    submit,
+    result,
+    isPending,
+    isError,
+    isSuccess: result !== undefined,
+  };
 }

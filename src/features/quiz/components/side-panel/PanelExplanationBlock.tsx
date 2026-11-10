@@ -2,12 +2,15 @@ import type { ReactNode } from 'react';
 
 import { UnderlinedHeading } from '@/components/UnderlinedHeading';
 
-type JobPlateProps = {
+type PanelExplanationBlock = {
   title: string;
   description: ReactNode;
 };
 
-export function JobPlate({ title, description }: JobPlateProps) {
+export function PanelExplanationBlock({
+  title,
+  description,
+}: PanelExplanationBlock) {
   return (
     <div className="flex flex-col items-center gap-4">
       <UnderlinedHeading as="h1">{title}</UnderlinedHeading>
