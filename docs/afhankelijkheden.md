@@ -1,4 +1,4 @@
-## Dependencies
+## Afhankelijkheden
 
 - **Figma-designs en design tokens:** Beschikbaarheid van de UI voor de happy flow, loading states, foutmeldingen en lege resultaten. Daarnaast moeten de design tokens voor onder andere kleuren en typografie (fonts, font sizes en font weights) beschikbaar zijn.
 - **API-contract:** beschikbare endpoints, request- en responsemodellen en foutafhandeling.

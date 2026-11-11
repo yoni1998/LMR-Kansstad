@@ -127,70 +127,12 @@ project/
 
 ## 🔌 Data-driven
 
-De opdracht bevat drie vragen, maar de applicatie moet kunnen groeien naar meer levels, meer beroepen en andere soorten uitdagingen. Daarom beschrijf ik de inhoud als data en laat ik één generieke UI die data renderen. Een nieuw beroep of level is dan data toevoegen en geen UI-code schrijven.
+De opdracht bevat momenteel drie vragen, maar de applicatie moet kunnen uitbreiden naar meerdere levels, beroepen en speltypes. Daarom wordt de inhoud als data gedefinieerd en weergegeven door een generieke UI. Zo vereist een nieuw level of beroep geen aanpassingen aan de UI-code.
 
-`GET /api/jobs`
+Correcte antwoorden blijven uitsluitend op de server en worden daar gevalideerd. Ze worden uit de data gefilterd voordat vragen naar de client gaan. Pas na het indienen van een antwoord geeft de API terug of het correct was.
 
-```json
-[
-  {
-    "id": "7f3a9c2e-8b41-4d65-a2f7-91c6e0b53d84",
-    "title": "Drukkerij",
-    "avatarUrl": "/img/jobs/drukkerij-avatar.webp",
-    "bannerUrl": "/img/jobs/drukkerij-banner.webp"
-  }
-]
-```
-
-Dit is genoeg om een overzichtspagina te bouwen en om het zijpaneel van een job te tonen (banner + avatar + titel).
-
-`GET /api/jobs/{jobId}/levels`
-
-```json
-[
-  {
-    "id": "lvl-1",
-    "gameType": "multiple-choice",
-    "description": "Sommige taken horen niet bij een drukafwerker. Kies alle taken die wel passen.",
-    "question": "Welke taken horen bij het takenpakket van een drukafwerker?",
-    "timeLimitSeconds": 30,
-    "answers": [
-      { "id": "a1", "answer": "Drukwerk snijden en vouwen", "correct": true },
-      { "id": "a2", "answer": "Boeken binden", "correct": false },
-      { "id": "a3", "answer": "Websites programmeren", "correct": false },
-      { "id": "a4", "answer": "Pakketten uitleveren", "correct": false }
-    ]
-  },
-  {
-    "id": "lvl-2",
-    "gameType": "tile-match",
-    "description": "Tik op alle machines die een drukafwerker gebruikt.",
-    "question": "Welke machines horen bij het werk van een drukafwerker?",
-    "timeLimitSeconds": 45,
-    "grid": { "columns": 3 },
-    "tiles": [
-      {
-        "id": "t1",
-        "label": "Snijmachine",
-        "image": "/images/tiles/snijmachine.webp",
-        "correct": true
-      },
-      {
-        "id": "t2",
-        "label": "Vouwmachine",
-        "image": "/images/tiles/vouwmachine.webp",
-        "correct": true
-      },
-      ...
-    ]
-  }
-]
-```
-
-De correcte antwoorden worden uitsluitend op de server bewaard en gevalideerd. Bij het laden van een vraag worden ze uit de data gefilterd, zodat ze niet naar de client gaan. Pas nadat de speler zijn antwoord heeft ingediend, stuurt de API per antwoord terug of het correct was, zodat de client het resultaat kan tonen. Tot dat moment zijn ze niet zichtbaar via de Network-tab of client-side code.
-
-- **Nieuw level of nieuw beroep:** alleen data toevoegen.
-- **Nieuw speltype:** één nieuwe component schrijven, daarna zijn er onbeperkt levels van dat type mogelijk.
+- **Nieuw level of beroep:** enkel data toevoegen.
+- **Nieuw speltype:** één nieuwe component ontwikkelen, waarna onbeperkt levels via data kunnen worden toegevoegd.
 
 ## 🛠️ Aanpak en methodiek
 
@@ -207,20 +149,21 @@ AI wordt onder andere ingezet voor:
 
 AI dient hierbij als hulpmiddel tijdens de ontwikkeling. De gegenereerde code en suggesties worden steeds geëvalueerd, getest en waar nodig aangepast.
 
-## 🚀 Fases en resultaten
+### Fases en resultaten
 
-| Fase                                | Resultaat                                                                                                       |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **1. Project setup**                | Next.js met pnpm, TypeScript, ESLint (inclusief architectuurregels), Prettier, Husky en een eerste CI-pipeline. |
-| **2. Design tokens**                | Kleuren, typografie en spacing uit Figma als Tailwind-tokens.                                                   |
-| **3. Herbruikbare componenten**     | Button, Surface, OptionButton, CountdownTimer, ... met alle voorziene staten.                                   |
-| **4. Schermen**                     | Quizscherm en zijpaneel volgens Figma, eerst met mockdata.                                                      |
-| **5. API-integratie**               | Route handlers, mapping en Zod-schema's, met loading-, error- en empty states.                                  |
-| **6. Quizflow**                     | Store met persistentie, navigatie tussen levels, score en eindscherm.                                           |
-| **7. Responsive design**            | Layout testen op verschillende schermgrootes.                                                                   |
-| **8. Accessibility**                | Toetsenbordbediening, focusbeheer in de modal, ARIA en contrast.                                                |
-| **9. Animaties en optionele timer** | Overgangen volgens Figma en de aftelklok.                                                                       |
-| **10. Testing**                     | E2E-tests in meerdere browsers.                                                                                 |
+| Fase                              | Resultaat                                                                                                                                      |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Project setup**              | Een werkend Next.js-project met pnpm, TypeScript, ESLint (inclusief architectuurregels), Prettier, Husky en een eerste CI-pipeline.            |
+| **2. Design tokens**              | Kleuren, typografie en spacing uit Figma beschikbaar als Tailwind-tokens.                                                                      |
+| **3. Herbruikbare componenten**   | Een set componenten (Button, Surface, OptionButton, CountdownTimer, ...) met alle voorziene staten.                                            |
+| **4. Schermen en API-integratie** | Quizscherm en zijpaneel volgens Figma, gekoppeld aan de API via route handlers, mapping en Zod-schema's, met loading-, error- en empty states. |
+| **5. Quizflow**                   | Een volledig doorloopbare quiz met persistente voortgang, navigatie tussen levels, score en eindscherm.                                        |
+| **6. Responsive design**          | Quizscherm en zijpaneel werken correct op mobiel, tablet en desktop.                                                                           |
+| **7. Accessibility**              | De quiz is volledig bedienbaar met het toetsenbord, met correct focusbeheer in de modal, ARIA-labels en voldoende contrast.                    |
+| **8. Animaties**                  | Vloeiende overgangen volgens Figma.                                                                                                            |
+| **9. Testing**                    | E2E-tests die de volledige quizflow afdekken in meerdere browsers en slagen in de CI-pipeline.                                                 |
+
+Bij de planning bouwen we eerst wat essentieel is voor een werkend product. De extra's komen pas daarna aan bod, zodat we die bij tijdsdruk kunnen schrappen zonder het eindresultaat in gevaar te brengen.
 
 ### Testaanpak
 
@@ -262,4 +205,4 @@ Het Scrum-bord krijgt extra kolommen zoals `In Review`, `blocked` en `Testing`.
 
 ## ⚠️ Afhankelijkheden en risico's
 
-[blockers-and-dependencies](./blockers-and-dependencies.md)
+[afhankelijkheden](./afhankelijkheden.md)

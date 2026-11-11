@@ -67,7 +67,7 @@ tests/                    # Playwright E2E
 | 3   | Componenten        | Button, OptionButton, Surface, CountdownTimer met alle staten              |
 | 4   | Schermen           | Quiz en zijpaneel volgens Figma, met mockdata                              |
 | 5   | API-integratie     | Server-side ophalen, antwoorden verwijderen, Zod, loading- en error-states |
-| 6   | Quizflow           | Store, „klaar!”-validatie, volgende vraag, score en eindscherm             |
+| 6   | Quizflow           | Store, „klaar!”-validatie, volgende vraag, score en feedback modal         |
 | 7   | Responsive         | Layout op alle schermgroottes                                              |
 | 8   | Accessibility      | Toetsenbord, focus, ARIA, contrast                                         |
 | 9   | Animaties en timer | Overgangen en aftelklok (nice-to-have)                                     |
@@ -84,13 +84,7 @@ tests/                    # Playwright E2E
 
 ---
 
-## ⚠️ Afhankelijkheden en risico's
-
-> Beperkt tot de quizcomponent uit de opdracht.
-
----
-
-## 🔗 Afhankelijkheden
+## ⚠️ Afhankelijkheden
 
 - **Figma-designs en design tokens:** schermen voor de happy flow, plus kleuren en typografie als tokens.
 - **Fonts en iconen:** FlandersArtSans en FontAwesome Pro zijn gelicentieerd. Ik heb de bestanden of licenties nodig, of een goedgekeurd alternatief.
