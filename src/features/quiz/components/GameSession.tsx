@@ -51,7 +51,7 @@ export function GameSession({ questions }: GameSessionProps) {
 
   if (!question) {
     return (
-      <p role="status" className="text-body text-white">
+      <p role="status" className="text-center">
         Geen vragen beschikbaar.
       </p>
     );
