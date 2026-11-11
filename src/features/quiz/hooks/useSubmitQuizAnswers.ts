@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { submitQuizAnswers } from '../api/submitQuizAnswers';
+import { submitQuizAnswers } from '../api/submitQuizAnswers.api';
 import { AnswerSubmission, AnswerValidationResult } from '../model/quiz.types';
-import { answerValidationResultSchema } from './../model/quiz.schema';
 
 export function useSubmitQuizAnswers() {
   const [result, setResult] = useState<AnswerValidationResult>();
@@ -14,13 +13,8 @@ export function useSubmitQuizAnswers() {
 
     try {
       const answers = await submitQuizAnswers(payload);
-      const validation = answerValidationResultSchema.safeParse(answers);
 
-      if (!validation.success) {
-        throw new Error('Invalid quiz response');
-      }
-
-      setResult(validation.data);
+      setResult(answers);
     } catch {
       setIsError(true);
     } finally {

@@ -1,3 +1,4 @@
+import { answerValidationResultSchema } from '../model/quiz.schema';
 import type {
   AnswerSubmission,
   AnswerValidationResult,
@@ -18,6 +19,7 @@ export async function submitQuizAnswers(
   if (!response.ok) {
     throw new Error('Answers could not be validated.');
   }
+  const data: unknown = await response.json();
 
-  return response.json();
+  return answerValidationResultSchema.parse(data);
 }
