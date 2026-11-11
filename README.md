@@ -5,7 +5,7 @@
 | 📓  | [Logbook](docs/logbook.md)                           | Wat ik wanneer gedaan heb en waarom                          |
 | 🛠️  | [PVA-project](docs/PVA-project.md)                   | PROJECT: Plan van aanpak: stack, structuur en werkwijze      |
 | 🛠️  | [PVA-oefening](docs/PVA-oefening.md)                 | OEFENING: Plan van aanpak: stack, structuur en werkwijze     |
-| 🚧  | [Blockers en dependencies](docs/afhankelijkheden.md) | Afhankelijkheden, blockers, risico's en vragen voor het team |
+| 🚧  | [afhankelijkheden](docs/afhankelijkheden.md)         | Afhankelijkheden, blockers, risico's en vragen voor het team |
 | 🗓️  | [Planning](docs/planning.md)                         | Fases en doorlooptijd                                        |
 
 # Next.js + TypeScript
