@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { NotFoundError } from '@/libs/errors';
 import { getQuizData } from './api/getQuizData.api';
 import type {
   AnswerSubmission,
@@ -14,7 +15,7 @@ export async function validateQuizAnswers({
   const question = quizData[questionIndex];
 
   if (!question) {
-    throw new Error('Question not found');
+    throw new NotFoundError('Question not found');
   }
 
   const selectedSet = new Set(selectedAnswers);

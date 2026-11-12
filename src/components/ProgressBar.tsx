@@ -13,7 +13,7 @@ const thicknesses = {
 
 export function ProgressBar({
   value,
-  max = 100,
+  max,
   thickness = 'md',
   className = '',
 }: ProgressBarProps) {

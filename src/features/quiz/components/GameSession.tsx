@@ -69,7 +69,7 @@ export function GameSession({ questions }: GameSessionProps) {
       totalQuestions={questions.length}
       score={score}
       question={question.question}
-      expiresAt={expiresAt ?? null}
+      expiresAt={expiresAt}
       answers={question.answers}
       onContinue={handleContinue}
     />

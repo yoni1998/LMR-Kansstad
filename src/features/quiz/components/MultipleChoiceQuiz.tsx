@@ -11,7 +11,7 @@ import { AnswerOptions } from './AnswerOptions';
 import { CountdownTimer } from './CountdownTimer';
 import { QuestionActions } from './QuestionActions';
 
-type MultipleChoiceQuizPanelProps = {
+type MultipleChoiceQuizProps = {
   questionIndex: number;
   totalQuestions: number;
   score: number;
@@ -29,7 +29,7 @@ export function MultipleChoiceQuiz({
   expiresAt,
   answers,
   onContinue,
-}: MultipleChoiceQuizPanelProps) {
+}: MultipleChoiceQuizProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
   const [isTimeUp, setIsTimeUp] = useState(false);
 

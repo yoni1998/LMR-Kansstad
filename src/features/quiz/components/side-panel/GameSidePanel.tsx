@@ -35,7 +35,7 @@ export function GameSidePanel({
 
   return (
     <aside className="panel gap-3">
-      <div className="flex flex-1 flex-col rounded-md bg-white">
+      <div className="flex flex-1 flex-col rounded-lg bg-white">
         <PanelBanner bannerSrc={bannerSrc} avatarSrc={avatarSrc}>
           <Surface className="h-9 rounded-md px-2">
             <CountdownTimer expiresAt={testExpiresAt} size="sm" />
