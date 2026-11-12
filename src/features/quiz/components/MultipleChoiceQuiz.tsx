@@ -83,7 +83,7 @@ export function MultipleChoiceQuiz({
           {showTimer && (
             <Surface
               color="white"
-              className="min-h-10 rounded-full [--edge:var(--color-blue-dark)]!"
+              className="min-h-10 rounded-full shadow-[0_4px_0_0_var(--color-blue-dark)]!"
             >
               <CountdownTimer
                 expiresAt={expiresAt}

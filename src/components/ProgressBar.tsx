@@ -1,22 +1,10 @@
 type ProgressBarProps = {
   value: number;
   max: number;
-  thickness?: 'sm' | 'md' | 'lg';
   className?: string;
 };
 
-const thicknesses = {
-  sm: 'h-2',
-  md: 'h-4',
-  lg: 'h-6',
-};
-
-export function ProgressBar({
-  value,
-  max,
-  thickness = 'md',
-  className = '',
-}: ProgressBarProps) {
+export function ProgressBar({ value, max, className = '' }: ProgressBarProps) {
   const clamped = Math.min(Math.max(value, 0), max);
   const percentage = max > 0 ? (clamped / max) * 100 : 0;
 
@@ -27,7 +15,7 @@ export function ProgressBar({
       aria-valuemin={0}
       aria-valuemax={max}
       aria-valuenow={clamped}
-      className={`bg-blue-frame relative overflow-hidden ${thicknesses[thickness]} ${className}`}
+      className={`bg-blue-frame relative h-2.5 overflow-hidden rounded-sm ${className}`}
     >
       <div
         aria-hidden="true"

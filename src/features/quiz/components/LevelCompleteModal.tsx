@@ -21,7 +21,7 @@ export function LevelCompleteModal({
 }: LevelCompleteModalProps) {
   return (
     <Modal open={open} title={`Level ${level} voltooid!`} dismissible={false}>
-      <ProgressBar value={level} max={maxLevel} className="w-2/3 rounded-md" />
+      <ProgressBar value={level} max={maxLevel} className="w-2/3" />
       <ModalDescription>{message}</ModalDescription>
       <Button
         color="yellow"

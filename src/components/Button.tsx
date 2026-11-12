@@ -23,12 +23,12 @@ const baseStyles =
   'hover:brightness-95 active:translate-y-px ' +
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ' +
   'disabled:pointer-events-none disabled:bg-grey-light ' +
-  'disabled:[--edge:var(--color-grey-dark)] disabled:shadow-[0_4px_0_var(--edge)]';
+  'disabled:shadow-[0_4px_0_var(--color-grey-dark)]';
 
 const buttonStyles = {
-  text: 'px-16 py-3 text-button-sm shadow-[0_4px_0_0_var(--edge)]',
-  iconText: 'size-13 px-3 py-3 text-button-sm shadow-[0_4px_0_0_var(--edge)]',
-  iconOnly: 'w-fit p-4 size-13 shadow-[0_4px_0_0_var(--edge)]',
+  text: 'px-16 py-3 text-button-sm',
+  iconText: 'size-13 px-3 py-3 text-button-sm',
+  iconOnly: 'w-fit p-4 size-13',
 };
 
 function getButtonStyle(hasIcon: boolean, hasText: boolean) {
