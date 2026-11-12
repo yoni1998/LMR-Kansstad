@@ -14,7 +14,7 @@ export function Surface({
 }: SurfaceProps) {
   return (
     <div
-      className={`text-button-sm flex items-center gap-2 font-bold shadow-[0_4px_0_0_var(--edge)] ${colors[color]} ${className}`}
+      className={`text-button-sm flex items-center gap-2 font-bold ${colors[color]} ${className}`}
     >
       {children}
     </div>

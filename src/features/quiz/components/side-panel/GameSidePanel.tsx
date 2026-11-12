@@ -44,8 +44,7 @@ export function GameSidePanel({
             <ProgressBar
               value={level}
               max={progressMax}
-              className="flex-1 rounded-sm"
-              thickness="lg"
+              className="h-6 flex-1"
             />
             <p>
               Level {level} / {progressMax}
