@@ -81,10 +81,7 @@ export function MultipleChoiceQuiz({
         {/* Fixed height so the layout doesn't shift when the timer disappears */}
         <div className="min-h-12">
           {showTimer && (
-            <Surface
-              color="white"
-              className="min-h-10 rounded-full shadow-[0_4px_0_0_var(--color-blue-dark)]!"
-            >
+            <Surface color="white" className="min-h-10 rounded-full">
               <CountdownTimer
                 expiresAt={expiresAt}
                 onComplete={handleTimerComplete}

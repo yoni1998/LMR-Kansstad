@@ -1,5 +1,4 @@
 import type { ButtonHTMLAttributes, ReactNode, Ref } from 'react';
-import { colors, type Color } from '@/components/styles';
 
 type BaseProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   color: Color;
@@ -16,6 +15,17 @@ type IconOnlyButtonProps = BaseProps & {
 };
 
 type ButtonProps = TextButtonProps | IconOnlyButtonProps;
+
+type Color = 'yellow' | 'white' | 'blue-dark';
+
+// Elke kleur bevat zijn eigen tekstkleur en onderrand
+const colors: Record<Color, string> = {
+  yellow:
+    'bg-yellow text-blue-dark shadow-[0_4px_0_0_var(--color-yellow-shadow)]',
+  white: 'bg-white text-blue-dark shadow-[0_4px_0_0_var(--color-grey-light)]',
+  'blue-dark':
+    'bg-blue-dark text-white shadow-[0_4px_0_0_var(--color-darkest-blue)]',
+};
 
 const baseStyles =
   'inline-flex items-center justify-center gap-3 font-bold rounded-lg ' +
