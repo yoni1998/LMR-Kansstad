@@ -3,7 +3,6 @@ import { colors, type Color } from '@/components/styles';
 
 type BaseProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   color: Color;
-  rounded?: boolean;
   ref?: Ref<HTMLButtonElement>;
 };
 
@@ -19,7 +18,7 @@ type IconOnlyButtonProps = BaseProps & {
 type ButtonProps = TextButtonProps | IconOnlyButtonProps;
 
 const baseStyles =
-  'inline-flex items-center justify-center gap-3 font-bold ' +
+  'inline-flex items-center justify-center gap-3 font-bold rounded-lg ' +
   'transition-[filter,transform] cursor-pointer ' +
   'hover:brightness-95 active:translate-y-px ' +
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ' +
@@ -39,7 +38,6 @@ function getButtonStyle(hasIcon: boolean, hasText: boolean) {
 
 export function Button({
   color,
-  rounded = false,
   icon,
   className = '',
   type = 'button',
@@ -58,7 +56,7 @@ export function Button({
   return (
     <button
       type={type}
-      className={`${baseStyles} ${rounded ? 'rounded-full' : 'rounded-lg'} ${colors[color]} ${buttonStyles[buttonStyle]} ${className}`}
+      className={`${baseStyles} ${colors[color]} ${buttonStyles[buttonStyle]} ${className}`}
       ref={ref}
       {...props}
     >

@@ -16,7 +16,7 @@ export function PanelBanner({
 }: PanelBannerProps) {
   return (
     <div className="relative">
-      <div className="relative h-44 overflow-hidden rounded-t-sm">
+      <div className="relative h-44 overflow-hidden rounded-t-lg">
         <Image
           src={bannerSrc}
           alt=""

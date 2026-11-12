@@ -24,9 +24,9 @@ function getOptionState(
 
   const checked = result.answers.find((item) => item.answer === answer);
 
-  if (checked?.correct) return 'correct';
-  if (checked?.selected) return 'incorrect';
-  return 'default';
+  if (!checked?.selected) return 'default';
+
+  return checked.correct ? 'correct' : 'incorrect';
 }
 
 export function AnswerOptions({

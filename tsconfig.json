@@ -21,7 +21,8 @@
     "paths": {
       "@/components/*": ["./src/components/*"],
       "@/features/*": ["./src/features/*"],
-      "@/assets/*": ["./src/assets/*"]
+      "@/assets/*": ["./src/assets/*"],
+      "@/libs/*": ["./src/libs/*"]
     }
   },
   "include": [
