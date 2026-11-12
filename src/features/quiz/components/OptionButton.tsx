@@ -13,8 +13,8 @@ const baseStyles =
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ';
 
 const states: Record<AnswerOptionState, string> = {
-  default: 'border-2 border-transparent bg-blue-light',
-  selected: 'border-2 border-yellow bg-blue-medium text-white',
+  default: 'border-3 border-transparent bg-blue-light',
+  selected: 'border-3 border-yellow bg-blue-medium text-white',
   correct: 'border-3 border-success bg-white',
   incorrect: 'border-3 border-error bg-white',
 };
