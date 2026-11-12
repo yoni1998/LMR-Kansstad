@@ -15,4 +15,4 @@
 | 08/11/2026 | Afwerking en laatste aanpassingen                         |    30 min |
 | 10/11/2026 | Afwerking en laatste aanpassingen                         |    30 min |
 | 12/11/2026 | Afwerking en laatste aanpassingen                         |    15 min |
-|            | **Totaal**                                                |   **12u** |
+|            | **Totaal**                                                |**10u 30min** |
